@@ -2,10 +2,11 @@ const express = require("express");
 const dotenv = require("dotenv");
 const app = express();
 const cors = require("cors");
-require("./DataBaseConnection/connection");
+require("../DataBaseConnection/connection");
 dotenv.config({ path: "./config.env" });
 const authRoutes = require("./authentication");
 const userRoutes = require("./Router/user");
+const pestRoutes = require("./Router/pestData");
 const PORT = process.env.PORT || 5000;
 
 
@@ -14,6 +15,8 @@ app.use(cors());
 
 app.use("/api", authRoutes);
 app.use("/api", userRoutes);
+app.use("/api", pestRoutes);
+
 
 
 app.listen(PORT, () => {
